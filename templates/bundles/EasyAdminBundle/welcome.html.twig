@@ -1,0 +1,21 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title 'Welcome to EasyAdmin 3' %}
+
+{% block main %}
+    <style>
+        p { max-width: 600px; }
+    </style>
+
+   <div class="container">
+<div class="row">
+<div class="col-6  alert-warning">
+<span class="display-3">{{countPost['value']|striptags}}</span> {% if countPost['value'] > 1 %} Posts {% else %} Post {% endif %}
+</div>
+<div class="col-6   alert-info">
+<span  class="display-3">{{countTag['value']|striptags}}</span>{% if countTag['value'] > 1 %} Tags {% else %} Tag {% endif %}
+</div>
+</div>
+   </div>
+{% endblock %}

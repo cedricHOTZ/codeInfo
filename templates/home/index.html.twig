@@ -5,6 +5,18 @@
 {% block body %}
 
     <style>
+    /* suppression des marges */
+     .container-fluid { 
+       padding: 0;
+       margin:0;
+       }
+        /* container header */
+       .cont{
+         background-color:black;
+        clip-path: polygon(0 0, 99% 0, 100% 100%, 0 85%);
+
+       }
+       
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -36,6 +48,8 @@
     border-radius: 4px;
     list-style-type:none;
        }
+      
+
      .boutton-header:hover {
     color: #001F3F;
     background-color: #fff;
@@ -46,7 +60,7 @@
         }
       }
     </style>
-    <div class="d-flex h-100 text-center text-white bg-dark">
+    <div class="d-flex h-100 text-center text-white cont">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>

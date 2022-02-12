@@ -47,4 +47,11 @@ class PostsRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function countPost()
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->select('COUNT(p.id) as value');
+            return $queryBuilder->getQuery()->getOneOrNullResult();
+        
+    }
 }

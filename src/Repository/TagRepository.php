@@ -47,4 +47,11 @@ class TagRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function countTag()
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->select('COUNT(p.id) as value');
+            return $queryBuilder->getQuery()->getOneOrNullResult();
+        
+    }
 }
