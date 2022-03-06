@@ -22,19 +22,35 @@ class PostsRepository extends ServiceEntityRepository
     // /**
     //  * @return Posts[] Returns an array of Posts objects
     //  */
-    /*
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+           
+            ->orderBy('p.date', 'DESC')
+            ->setMaxResults($value)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+      // /**
+    //  * @return Posts[] Returns an array of Posts objects
+    //  */
+    
+    public function findByPostPHp($value,$values)
+    {
+        return $this->createQueryBuilder('p')
+           
+            ->orderBy('p.date', 'DESC')
+            ->andWhere('p.tag = :$values')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 
     /*
     public function findOneBySomeField($value): ?Posts
