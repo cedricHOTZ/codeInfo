@@ -19,10 +19,10 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
-    // /**
-    //  * @return Tag[] Returns an array of Tag objects
-    //  */
-    /*
+     /**
+      * @return Tag[] Returns an array of Tag objects
+      */
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('t')
@@ -34,9 +34,9 @@ class TagRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
+    
     public function findOneBySomeField($value): ?Tag
     {
         return $this->createQueryBuilder('t')
@@ -46,12 +46,12 @@ class TagRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
-    public function countTag()
-    {
-        $queryBuilder = $this->createQueryBuilder('p')
-            ->select('COUNT(p.id) as value');
-            return $queryBuilder->getQuery()->getOneOrNullResult();
+    
+     public function countTag()
+      {
+         $queryBuilder = $this->createQueryBuilder('p')
+             ->select('COUNT(p.id) as value');
+              return $queryBuilder->getQuery()->getOneOrNullResult();
         
-    }
+      }
 }

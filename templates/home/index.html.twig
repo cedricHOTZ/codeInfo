@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
@@ -24,7 +23,9 @@
                  {% for tags in post.getTags() %}
                   <button type="button" class="btn btn-sm btn-outline-secondary">{{tags.nom}}</button>
                   {% endfor %}
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{post.url}}Voir plus</button>
+                  <a href="{{post.url}} "target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                  </a>
                 </div>
                 <small class="text-muted">{{post.date|date('d-m-Y')}}</small>
               </div>
@@ -36,52 +37,60 @@
          {% endfor %}
          
         </div>
-         <a href="" class="float-end">Voir tous les posts</a>
+         <a href="{{path('post')}}" class="float-end">Voir tous les posts</a>
         </div>
 <h2>PHP</h2>
         <div class="row">
  
-  <section class="col-sm-10 col-md-8">
+  <section class="col-sm-10 col-md-10">
   <div class="album py-5 bg-light">
   
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    {% for post in postsphp %}
+      
+         {% for postphp in listPost %} 
+           
         <div class="col-md-2">
           
           <div class="card shadow-sm">
            
-            <img src="{{ (post.image ? vich_uploader_asset(post,'imageFile')|imagine_filter('square_thumbnail_medium') : asset('/images/posts/header.jpg')|imagine_filter('square_thumbnail_medium'))}}" class="card-img-top" alt="">
+             <img src="{{ (postphp.image ? vich_uploader_asset(post,'imageFile')|imagine_filter('square_thumbnail_medium') : asset('/images/posts/header.jpg')|imagine_filter('square_thumbnail_medium'))}}" class="card-img-top" alt="">
             {# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><title>{post.titre}</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">fgfdgfgkgfdikgd</text></svg> #}
 
             <div class="card-body">
-             <p class="card-text">{{post.titre}}</p>
-              <p class="card-text">{{post.description|striptags|u.truncate(10,'....',true)|raw }}</p>
+                <p class="card-text">{{postphp.titre}}</p>
+           <p class="card-text">{{postphp.description}}</p>   
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                 {% for tags in post.getTags() %}
+                    {% for tags in postphp.getTags() %}   
                   <button type="button" class="btn btn-sm btn-outline-secondary">{{tags.nom}}</button>
-                  {% endfor %}
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{post.url}}Voir plus</button>
+                    {% endfor %}   
+                    <a href="{{postphp.url}} "target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                  </a>
                 </div>
-                <small class="text-muted">{{post.date|date('d-m-Y')}}</small>
+                <small class="text-muted"></small>
               </div>
             </div>
               
           </div>
        
         </div>
-         {% endfor %}
-         
+              {% endfor %}  
+        
+          
         </div>
          <a href="" class="float-end">Voir tous les posts</a>
-        </div>
-  
+
   </section>
-  <div class="col-md-2">	
+  <div class="col-md-2 w-10">
+  <h2>Catégories</h2>	
     <div class="row">
-      <aside class="col-md-12">Aside 3</aside>
-      <aside class="col-md-12">Aside 4</aside>
+    {% for tags in tag %}
+   
+    <a href="#" class="badge badge-dark">{{tags.nom}}</a>
+    {% endfor %}
+      
     </div>
   </div>
 </div> 	

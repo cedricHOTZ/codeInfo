@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="album py-5 bg-light">
+  
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    
+        <div class="col-md-2">
+          
+          <div class="card shadow-sm">
+           
+            <img src="{{ (posts.image ? vich_uploader_asset(post,'imageFile')|imagine_filter('square_thumbnail_medium') : asset('/images/posts/header.jpg')|imagine_filter('square_thumbnail_medium'))}}" class="card-img-top" alt="">
+            {# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><title>{post.titre}</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">fgfdgfgkgfdikgd</text></svg> #}
+
+            <div class="card-body">
+             <p class="card-text">{{posts.titre}}</p>
+              <p class="card-text">{{posts.description|striptags|u.truncate(10,'....',true)|raw }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                 {% for tags in posts.getTags() %}
+                  <button type="button" class="btn btn-sm btn-outline-secondary">{{tags.nom}}</button>
+                  {% endfor %}
+                  <a href="{{post.url}} "target="_blank">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                  </a>
+                </div>
+                <small class="text-muted">{{posts.date|date('d-m-Y')}}</small>
+              </div>
+            </div>
+              
+          </div>
+       
+        </div>
+
+         
+        </div>
+         <a href="" class="float-end">Voir tous les posts</a>
+        </div>
+
+{% endblock %}

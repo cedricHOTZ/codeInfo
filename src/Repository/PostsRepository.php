@@ -19,40 +19,37 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
-    // /**
-    //  * @return Posts[] Returns an array of Posts objects
-    //  */
+     /**
+      * @return Posts[] Returns an array of Posts objects
+      */
     
-    public function findByExampleField($value)
+     public function findByExampleField($value)
+     {
+         return $this->createQueryBuilder('p')
+           
+             ->orderBy('p.date', 'DESC')
+             ->setMaxResults($value)
+             ->getQuery()
+             ->getResult() ;
+     }
+
+      /**
+      * @return Posts[] Returns an array of Posts objects
+      */
+    
+    public function findByPostPHp($nom)
     {
         return $this->createQueryBuilder('p')
-           
-            ->orderBy('p.date', 'DESC')
-            ->setMaxResults($value)
-            ->getQuery()
-            ->getResult()
+          
+          ->addSelect('t')
+          ->setParameter('nom',$nom)
+          ->Join("p.tags", "t", "WITH", "t.nom = :nom")
+          ->orderBy('p.date', 'DESC')
+          ->getQuery()
+          ->getResult()   
         ;
     }
-
-      // /**
-    //  * @return Posts[] Returns an array of Posts objects
-    //  */
     
-    public function findByPostPHp($value,$values)
-    {
-        return $this->createQueryBuilder('p')
-           
-            ->orderBy('p.date', 'DESC')
-            ->andWhere('p.tag = :$values')
-            ->setMaxResults($value)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
-
-    /*
     public function findOneBySomeField($value): ?Posts
     {
         return $this->createQueryBuilder('p')
@@ -62,12 +59,12 @@ class PostsRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
-    public function countPost()
-    {
-        $queryBuilder = $this->createQueryBuilder('p')
-            ->select('COUNT(p.id) as value');
-            return $queryBuilder->getQuery()->getOneOrNullResult();
+    
+     public function countPost()
+     {
+         $queryBuilder = $this->createQueryBuilder('p')
+             ->select('COUNT(p.id) as value');
+             return $queryBuilder->getQuery()->getOneOrNullResult();
         
+     }
     }
-}

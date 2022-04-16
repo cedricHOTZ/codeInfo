@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tout les tags{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Tout les tags</h1>
+
+   
+    <ul>
+    {% for tags in tag %}
+   
+        {# <li><a class=" {{"type#{tags.couleur}"}}" href="{{path('tag_show', {slug: tags.slug})}}">{{tags.nom}}</a></li> #}
+  <a href="{{path('tag_show', {slug: tags.slug})}}" {{tags.nom}}<button type="button" class="btn btn-outline-primary">{{tags.nom}}</button> </a>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

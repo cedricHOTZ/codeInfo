@@ -6,6 +6,10 @@ use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Routing\Annotation\Route; 
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=TagRepository::class)
@@ -26,8 +30,23 @@ class Tag
 
     /**
      * @ORM\ManyToMany(targetEntity=Posts::class, mappedBy="tags")
+     * @ORM\JoinTable(name="posts_tags",joinColumns={@ORM\JoinColumn(name="tag_id",referencedColumnName="id")},inverseJoinColumns={@ORM\JoinColumn(name="post_id",referencedColumnName="id")})
      */
     private $posts;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"nom"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $couleur;
+
+
+
 
     public function __construct()
     {
@@ -50,6 +69,7 @@ class Tag
 
         return $this;
     }
+  
 
     /**
      * @return Collection|Posts[]
@@ -81,4 +101,29 @@ class Tag
     {
         return $this->nom;
 }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getCouleur(): ?string
+    {
+        return $this->couleur;
+    }
+
+    public function setCouleur(?string $couleur): self
+    {
+        $this->couleur = $couleur;
+
+        return $this;
+    }
+
 }
