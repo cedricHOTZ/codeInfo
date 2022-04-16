@@ -18,7 +18,32 @@ class PostsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Posts::class);
     }
+    /**
+     * Recherche les posts en fonction du formulaire
+     * @return void
+     */
 
+    public function search($mots = null, $tags = null){
+        $qb = $this->createQueryBuilder('p');
+        // $qb->where('p.titre LIKE :mots')
+        //     ->orWhere('p.description LIKE :mots')
+            //->orWhere('p.tags LIKE :mots')
+           
+            if($mots != null){
+                $qb->andWhere('MATCH_AGAINST(p.titre, p.description) AGAINST (:mots boolean)>0')
+                ->setParameter('mots',$mots);
+            }
+
+            if($mots == ""){
+                $qb->orderBy('p.date', 'DESC');
+            }
+            if($tags != null){
+                $qb->leftJoin('p.tags','t');
+                $qb->andWhere('t.id = :id')
+                ->setParameter('id',$tags);
+            }
+        return $qb->getQuery()->getResult();
+    }
      /**
       * @return Posts[] Returns an array of Posts objects
       */
@@ -67,4 +92,6 @@ class PostsRepository extends ServiceEntityRepository
              return $queryBuilder->getQuery()->getOneOrNullResult();
         
      }
+
+    
     }
