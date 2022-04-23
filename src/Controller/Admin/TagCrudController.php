@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Tag;
 use PHPUnit\Util\Color;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -20,6 +21,13 @@ class TagCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Tag::class;
+    }
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+       
+        parent::updateEntity($entityManager, $entityInstance);
+        $this->messageService->add('info', 'Le tag est modifié !');
     }
 
     

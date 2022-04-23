@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Posts;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -17,15 +18,28 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 class PostsCrudController extends AbstractCrudController
 {
+    protected $messageService;
+
+    public function __construct(FlashBagInterface $messageService){
+        $this->messageService = $messageService;
+    }
     
     public static function getEntityFqcn(): string
     {
         return Posts::class;
     }
 
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+       
+        parent::updateEntity($entityManager, $entityInstance);
+        $this->messageService->add('info', 'Le post est modifié !');
+    }
+ 
     
     public function configureFields(string $pageName): iterable
     {
