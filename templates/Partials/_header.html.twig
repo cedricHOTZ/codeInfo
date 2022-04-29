@@ -11,9 +11,25 @@
         <a class="nav-link" href="{{path('tag')}}">Tags</a>
       </nav>
        <nav class="nav nav-masthead justify-content-right float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
+        
+        <ul class="navbar nav ms-auto mb-2 mb-lg-0">
+        <!-- Si je suis connecter je peux afficher mon profil et me deconnecter -->
+        {% if app.user %}
+        <li class="nav-item">
+        <a class="nav-link" href="">Mon compte</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{path('app_logout')}}">Me déconnecter</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+        <a class="nav-link" href="{{path('app_register')}}">M'inscrire</a>
+        </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{{path('app_login')}}">Me connecter</a>
+        </li>
+        </ul>
+        {% endif %}
       </nav>
     </div>
   </header>
