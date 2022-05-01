@@ -4,14 +4,15 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -19,16 +20,16 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => false,
+                'label' => 'Email',
                 'attr' => [
                     'class' => 'form-control w-50',
-                    'placeholder' => 'Email'
+                    'placeholder' => ''
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'attr' => [
-                    'class' => 'form-check-input mt-2',
+                    'class' => 'form-check-input',
                     
                 ],
                 'constraints' => [
@@ -37,31 +38,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'label' => false,
-                'attr' => [
-                    'autocomplete' => 'new-password',
-                    'class' => 'form-control w-50 mt-2',
-                    'placeholder' => 'Mot de passe'
-                    
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                       
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-        ;
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                
+                'invalid_message' => '
+                Les champs du mot de passe doivent correspondre.',
+                'options' => ['attr' => ['class' => 'password-field form-control w-50 ']],
+                'required' => true,
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmer le mot de passe'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
