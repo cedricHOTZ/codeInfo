@@ -4,11 +4,11 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <div>
-      <h3 class="float-md-start mb-0">CodeInfo</h3>
+      <h3 class="float-md-start mb-0 fw-bold">CodeInfo</h3>
       <nav class="nav nav-masthead justify-content-left float-md-start">
-        <a class="nav-link active" aria-current="page" href="{{path('home')}}">Accueil</a>
-        <a class="nav-link" href="{{path('post')}}">Posts</a>
-        <a class="nav-link" href="{{path('tag')}}">Tags</a>
+        <a class="nav-link fw-bold active" aria-current="page" href="{{path('home')}}">Accueil</a>
+        <a class="nav-link fw-bold" href="{{path('post')}}">Posts</a>
+        <a class="nav-link fw-bold" href="{{path('tag')}}">Tags</a>
       </nav>
        <nav class="nav nav-masthead justify-content-right float-md-end">
         
@@ -16,17 +16,17 @@
         <!-- Si je suis connecter je peux afficher mon profil et me deconnecter -->
         {% if app.user %}
         <li class="nav-item">
-        <a class="nav-link" href="">Mon compte</a>
+        <a class="nav-link fw-bold" href="{{path('user')}}">Mon compte</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="{{path('app_logout')}}">Me déconnecter</a>
+        <a class="nav-link fw-bold" href="{{path('app_logout')}}">Me déconnecter</a>
         </li>
         {% else %}
         <li class="nav-item">
-        <a class="nav-link" href="{{path('app_register')}}">M'inscrire</a>
+        <a class="nav-link fw-bold" href="{{path('app_register')}}">M'inscrire</a>
         </li>
          <li class="nav-item">
-        <a class="nav-link" href="{{path('app_login')}}">Me connecter</a>
+        <a class="nav-link fw-bold" href="{{path('app_login')}}">Me connecter</a>
         </li>
         </ul>
         {% endif %}
@@ -35,10 +35,17 @@
   </header>
 
   <main class="px-3">
-    <h1>Code info</h1>
-    <p class="lead">Vous trouverez principalement des articles sur symfony et flutter</p>
-    <p class="lead">
-      <a href="#" class="boutton-header">Partager un article</a>
-    </p>
+    <h1 class="fw-bold">Code info</h1>
+    <p class="lead fw-bold">Vous trouverez des articles sur symfony et flutter</p>
+ {% include 'modal_form.html.twig' %}
+   
+    
   </main>
+     
   </div>
+
+ <script src="https://kit.fontawesome.com/c18b1bb06b.js" crossorigin="anonymous"></script>
+ 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
