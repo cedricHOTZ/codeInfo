@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Posts;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -14,11 +15,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class PostsCrudController extends AbstractCrudController
 {
@@ -37,7 +39,7 @@ class PostsCrudController extends AbstractCrudController
     {
        
         parent::updateEntity($entityManager, $entityInstance);
-        $this->messageService->add('info', 'Le post est modifié !');
+        $this->messageService->add('success', 'Le post est modifié !');
     }
  
     
@@ -50,11 +52,15 @@ class PostsCrudController extends AbstractCrudController
             SlugField::new('slug')->setLabel('Slug')->setTargetFieldName('titre'),
             TextField::new('description'),  
             CollectionField::new('tags')->hideOnForm(),
-            AssociationField::new('tags')->onlyWhenCreating(),
+            AssociationField::new('tags')->setQueryBuilder(function(QueryBuilder $queryBuilder){
+                $queryBuilder->where('entity.isActive = true');
+            })->onlyWhenCreating(),
+        
             UrlField::new('url'),
             DateField::new('date')->hideOnForm()->setLabel('Date de création')->setFormat('dd-MM-y HH:mm:ss'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(), 
             ImageField::new('image')->setBasePath('/images/posts/')->onlyOnIndex()->setUpLoadDir('public/images/posts/')->setLabel('Image'),
+            BooleanField::new('active')->setLabel('En ligne')->addCssClass('switch-input'),
            
         ];
     }
@@ -81,7 +87,7 @@ class PostsCrudController extends AbstractCrudController
             return $action->setIcon('fa fa-eye')->addCssClass('btn btn-info');
         })
         ->update(Crud::PAGE_INDEX,Action::DELETE,function(Action $action){
-            return $action->setIcon('fa fa-trash')->addCssClass('btn btn-danger');
+            return $action->setIcon('fa fa-trash')->addCssClass('btn btn-dark');
         });
         
     }

@@ -44,11 +44,9 @@
 
 {% block main %}
     {% block new_form %}
-    
-    <div class="container">
-    <div class="alert alert-success">
-    </div>
-    </div>
+ {% for message in app.flashes('success') %}
+    <div id="notyf-message" class="success">{{ message }}</div>
+{% endfor %}
         {{ form(new_form) }}
     {% endblock new_form %}
 {% endblock %}

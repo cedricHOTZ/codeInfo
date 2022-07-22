@@ -10,11 +10,14 @@
 
    <div class="container">
 <div class="row">
-<div class="col-6  alert-warning">
+<div class="col-3  alert-warning">
 <span class="display-3">{{countPost['value']|striptags}}</span> {% if countPost['value'] > 1 %} Posts {% else %} Post {% endif %}
 </div>
-<div class="col-6   alert-info">
+<div class="col-3   alert-info">
 <span  class="display-3">{{countTag['value']|striptags}}</span>{% if countTag['value'] > 1 %} Tags {% else %} Tag {% endif %}
+</div>
+<div class="col-3   alert-danger">
+<span  class="display-3">{{countUser['value']|striptags}}</span>{% if countUser['value'] > 1 %} Utilisateurs {% else %} Utilisateur {% endif %}
 </div>
 </div>
    </div>

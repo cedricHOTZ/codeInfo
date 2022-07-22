@@ -1,10 +1,11 @@
 
-<div class="album py-5 bg-light">
+<div class="album py-5">
   
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row  g-3 bgFond">
     {% for post in posts %}
-        <div class="col-md-2">
+    {# <h1 class="text-center"> Tout les articles {{post.nom.getTags()}}</h1> #}
+        <div class="col-md-3 col-xs-6 col-lg-2">
           
           <div class="card shadow-sm">
            
@@ -16,9 +17,9 @@
               <p class="card-text">{{post.description|striptags|u.truncate(10,'....',true)|raw }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                 {% for tags in post.getTags() %}
+                 {# {% for tags in post.getTags() %}
               <a href="{{path('tag_show', {slug: tags.slug})}}"  class="btn btn-sm btn-outline-secondary">{{tags.nom}}</a>
-                  {% endfor %}
+                  {% endfor %} #}
                   <a href="{{post.url}} "target="_blank">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
                   </a>

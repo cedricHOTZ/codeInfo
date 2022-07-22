@@ -54,6 +54,7 @@ class PostsRepository extends ServiceEntityRepository
            
              ->orderBy('p.date', 'DESC')
              ->setMaxResults($value)
+             ->where('p.active = true')
              ->getQuery()
              ->getResult() ;
      }
@@ -70,10 +71,29 @@ class PostsRepository extends ServiceEntityRepository
           ->setParameter('nom',$nom)
           ->Join("p.tags", "t", "WITH", "t.nom = :nom")
           ->orderBy('p.date', 'DESC')
+          ->where('p.active = true')
           ->getQuery()
           ->getResult()   
         ;
     }
+
+    /**
+      * @return Posts[] Returns an array of Posts objects
+      */
+    
+      public function findByPostFlutter($nom)
+      {
+          return $this->createQueryBuilder('p')
+            
+            ->addSelect('t')
+            ->setParameter('nom',$nom)
+            ->Join("p.tags", "t", "WITH", "t.nom = :nom")
+            ->orderBy('p.date', 'DESC')
+            ->where('p.active = true')
+            ->getQuery()
+            ->getResult()   
+          ;
+      }
     
     public function findOneBySomeField($value): ?Posts
     {

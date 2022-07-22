@@ -1,33 +1,82 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}CodeInfo{% endblock %}
 
 {% block body %}
-<h2>Les derniers posts</h2>
-<div class="album py-5 bg-light">
-  
+<div class="container">
+<div class="jumbotron">
+  <h1 class="display-6 text-white p-2"></h1>
+  <p class="lead text-white p-2 text-center">Vous pouvez Partager une ressource et en daire profiter les autres</p>
+  <hr class="my-4">
 
+  <p class="lead text-center p-3">
+           <!-- Button trigger modal -->
+<button type="button" class="boutton-header" id="partagePost" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+ Partager un article
+</button>
+</p>
+ 
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" data-toggle="modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Partagez un article</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      {{form_start(form)}}
+       <div class="row">
+         <div class="col">
+          {{form_widget(form.pseudo)}}
+         </div>
+        <div class="col">
+          {{form_widget(form.email)}}
+        </div>
+        
+        <div class="col">
+        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+        </div
+      </div> 
+   {{form_end(form)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> 
+       <input type="hidden" name="_token" value="{{ form._token.vars.value }}">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+   </div>
+<h2 class="text-white mt-5 text-center">Les derniers posts</h2>
+<div class="album py-5">
+  
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     {% for post in posts %}
-        <div class="col-md-2">
+        <div class="col-md-2 ">
           
-          <div class="card shadow-sm">
+          <div class="card shadow-sm neonText">
            
             <img src="{{ (post.image ? vich_uploader_asset(post,'imageFile')|imagine_filter('square_thumbnail_medium') : asset('/images/posts/header.jpg')|imagine_filter('square_thumbnail_medium'))}}" class="card-img-top" alt="">
             {# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><title>{post.titre}</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">fgfdgfgkgfdikgd</text></svg> #}
 
-            <div class="card-body">
+            <div class="card-body ">
              <p class="card-text">{{post.titre}}</p>
               <p class="card-text">{{post.description|striptags|u.truncate(10,'....',true)|raw }}</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+                <div class="btn-group rel">
                  {% for tags in post.getTags() %}
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{tags.nom}}</button>
+                  <a>
+                  <span class="badge bg-light text-dark tagCarte">{{tags.nom}}</span>
+                  </a>
                   {% endfor %}
+                  
                   <a href="{{post.url}} "target="_blank">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                 <span class="badge rounded-pill bg-dark">Voir plus</span>
                   </a>
                 </div>
-                <small class="text-muted">{{post.date|date('d-m-Y')}}</small>
+                {# <small class="text-muted">{{post.date|date('d-m-Y')}}</small> #}
               </div>
             </div>
               
@@ -37,18 +86,19 @@
          {% endfor %}
          
         </div>
-         <a href="{{path('post')}}" class="float-end">Voir tous les posts</a>
+         <a href="{{path('post')}}" class="float-start text-white mt-4">Voir tous les posts</a>
         </div>
-<h2>PHP</h2>
+<h2 class="text-white text-center">PHP</h2>
         <div class="row">
  
   <section class="col-sm-10 col-md-10">
-  <div class="album py-5 bg-light">
+  <div class="album py-5">
   
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       
          {% for postphp in listPost %} 
+        
            
         <div class="col-md-2">
           
@@ -63,10 +113,10 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     {% for tags in postphp.getTags() %}   
-                  <button type="button" class="btn btn-sm btn-outline-secondary">{{tags.nom}}</button>
+                  <span class="badge bg-light text-dark tagCarte">{{tags.nom}}</span>
                     {% endfor %}   
                     <a href="{{postphp.url}} "target="_blank">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                 <span class="badge rounded-pill bg-dark text-white">Voir plus</span>
                   </a>
                 </div>
                 <small class="text-muted"></small>
@@ -80,19 +130,116 @@
         
           
         </div>
-         <a href="" class="float-end">Voir tous les posts</a>
+         <a href="" class="float-start text-white mt-4">Voir tous les posts</a>
 
   </section>
   <div class="col-md-2 w-10">
-  <h2>Catégories</h2>	
+  <h4 class="text-white">Categories</h2>	
     <div class="row">
+    <ul>
     {% for tags in tag %}
+    <a href="{{path('tag_show', {slug: tags.slug})}}"> <span class="badge bg-info text-dark">{{tags.nom}}</span> </a>
    
-    <a href="#" class="badge badge-dark">{{tags.nom}}</a>
+    {# <a href="#" class="badge badge-dark">{{tags.nom}}</a> #}
     {% endfor %}
-      
+      </ul>
     </div>
+    <div class="row">
+   
+     <h4 class="text-white mt-2">Les plus pertinents</h4>	
+     {% for postPertinents in postPertinent %}
+     <div class="card mt-2">
+      
+    <div class="card-body">
+    <h5 class="card-title">{{postPertinents.titre}}</h5>
+     <h5 class="card-text">{{postPertinents.description}}</h5>
+     <a href="{{postPertinents.url}}" class="badge rounded-pill bg-dark text-white">Voir plus</a>
+    </div>
+    </div>
+      {% endfor %}
+    </div>
+     
   </div>
-</div> 	
+ 
+<h2 class="text-white text-center">FLUTTER</h2>
+        <div class="row">
+ 
+  <section class="col-sm-10 col-md-10">
+  <div class="album py-5">
+  
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+   {% if postflutter|length == 0 %}{
+    <h2 class="text-white text-center">Aucun post</h2>
+    
+   }
+   {% else %}
+         {% for postflutters in postflutter %}
+         
        
+        <div class="col-md-2">
+          
+          <div class="card shadow-sm">
+           
+             <img src="{{ (postflutters.image ? vich_uploader_asset(post,'imageFile')|imagine_filter('square_thumbnail_medium') : asset('/images/posts/header.jpg')|imagine_filter('square_thumbnail_medium'))}}" class="card-img-top" alt="">
+            {# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><title>{post.titre}</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">fgfdgfgkgfdikgd</text></svg> #}
+
+            <div class="card-body">
+                <p class="card-text">{{postflutters.titre}}</p>
+           <p class="card-text">{{postflutters.description}}</p>   
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    {% for tags in postflutters.getTags() %}   
+                  <span class="badge bg-light text-dark tagCarte">{{tags.nom}}</span>
+                    {% endfor %}   
+                    <a href="{{postflutters.url}} "target="_blank">
+                 <span class="badge rounded-pill bg-dark text-white">Voir plus</span>
+                  </a>
+                </div>
+                <small class="text-muted"></small>
+              </div>
+            </div>
+              
+          </div>
+       
+        </div>
+        
+              {% endfor %}  
+              {% endif %}
+        
+          
+        </div>
+        {% if postflutter|length == 0 %}
+        <p></p>
+        {% else %}
+         <a href="" class="float-start text-white mt-4 text-white">Voir tous les posts</a>
+{% endif %}
+</div> 	
+</div>
+ <!-- Create your own class for the containing div -->
+<div class="slickcarousel">
+  <!-- Inside the containing div, add one div for each slide -->
+  <div>
+    <!-- You can put an image or text inside each slide div -->
+    <img src="http://placekitten.com/g/320/240">
+  </div>
+  <div>
+    <img src="http://placekitten.com/g/320/240">
+  </div>
+  <div>
+    <img src="http://placekitten.com/g/320/240">
+  </div>
+  <div>
+    <img src="http://placekitten.com/g/320/240">
+  </div>
+  <div>
+    <img src="http://placekitten.com/g/320/240">
+  </div>
+</div>
+
+<!-- jQuery CDN -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- slick Carousel CDN -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
 {% endblock %}

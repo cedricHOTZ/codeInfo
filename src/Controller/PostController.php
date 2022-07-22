@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tag;
 use App\Entity\Posts;
 use App\Form\SearchPostType;
+use App\Form\PartagePostType;
 use App\Repository\TagRepository;
 use App\Repository\PostsRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +21,11 @@ class PostController extends AbstractController
     public function index(?Posts $posts, PostsRepository $postsRepository, TagRepository  $tagRepository,Request $request): Response
     {
         $posts = $postsRepository->findBy([],['date' => 'DESC']);
+        $tag = $tagRepository->findAll();
         // Barre de recherche
-        $form = $this->createForm(SearchPostType::class);
-        $search =$form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        $form1 = $this->createForm(SearchPostType::class);
+        $search =$form1->handleRequest($request);
+        if($form1->isSubmitted() && $form1->isValid()){
             $posts = $postsRepository->search($search->get('mots')->getData(),
             $search->get('tags')->getData());
             
@@ -32,12 +34,13 @@ class PostController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $tags =  $tagRepository->findAll();
         // $posts = $postsRepository->findAll();
-    
+       
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
            'posts' => $posts,
-            
-            'form' => $form->createView(),
+            'tag' => $tag,
+            'form1' => $form1->createView(),
+           
 
             
           

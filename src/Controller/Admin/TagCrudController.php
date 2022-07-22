@@ -13,11 +13,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class TagCrudController extends AbstractCrudController
 {
+    protected $messageService;
+
+    public function __construct(FlashBagInterface $messageService){
+        $this->messageService = $messageService;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Tag::class;
@@ -27,7 +35,7 @@ class TagCrudController extends AbstractCrudController
     {
        
         parent::updateEntity($entityManager, $entityInstance);
-        $this->messageService->add('info', 'Le tag est modifié !');
+        $this->messageService->add('success', 'Le tag est modifié !');
     }
 
     
@@ -38,6 +46,7 @@ class TagCrudController extends AbstractCrudController
             TextField::new('nom'),
             SlugField::new('slug')->setLabel('Slug')->setTargetFieldName('nom'),
             ColorField::new('couleur')->setLabel('Couleur'),
+            BooleanField::new('isActive')->setLabel('En ligne')->addCssClass('switch-input'),
            
         ];
     }
@@ -65,7 +74,7 @@ class TagCrudController extends AbstractCrudController
                 return $action->setIcon('fa fa-eye')->addCssClass('btn btn-info');
             })
             ->update(Crud::PAGE_INDEX,Action::DELETE,function(Action $action){
-                return $action->setIcon('fa fa-trash')->addCssClass('btn btn-danger');
+                return $action->setIcon('fa fa-trash')->addCssClass('btn btn-dark');
             });
             
         }

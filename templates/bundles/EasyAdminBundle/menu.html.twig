@@ -4,6 +4,7 @@
 
     <ul class="menu">
         {% block main_menu %}
+       <a href="{{path('home')}}"><i class="fa-solid fa-person-walking-arrow-right"></i>Retour à l'accueil</a>
             {% for menuItem in ea.mainMenu.items %}
                 {% block menu_item %}
                     <li class="{{ menuItem.isMenuSection ? 'menu-header' : 'menu-item' }} {{ menuItem.hasSubItems ? 'has-submenu' }} {{ ea.mainMenu.isSelected(menuItem) ? 'active' }} {{ ea.mainMenu.isExpanded(menuItem) ? 'expanded' }}">

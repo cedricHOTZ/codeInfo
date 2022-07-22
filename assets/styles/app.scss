@@ -1,25 +1,49 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
-body {
-    background-color: lightgray;
-    
-}
-.btn-danger{
-    color:white;
+@import "~@picocss/pico/scss/pico.scss";
+@font-face{
+
+font-family: "a4speed";
+src: url('/assets/font/a4speed.ttf');
 }
 
+
+body {
+    background: #2f3640 !important;
+    
+}
+.bgFond{
+  background:#2f3640;
+}
+h1,h2{
+  font-family:'a4speed';
+  text-transform:uppercase;
+}
+
+a.dropdown-item.action-delete.text-danger.btn.btn-danger
+.text-danger{
+  color:white !important;
+}
+div#notyf-message{
+  display:none;
+}
 /* suppression des marges */
 .container-fluid { 
-    padding: 0;
+    padding: 0; 
     margin:0;
     }
      /* container header */
     .cont{
-      background-color:black;
-     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-  
+      background: url("../images/header.jpg");
+      background-repeat: no-repeat;
+      background-size:100%;
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);*/
+     background-position: center;
+     object-fit:cover;
     }
-    
+    a#navbarDropdownMenuLink{
+      background:none !important;
+    }
    .bd-placeholder-img {
      font-size: 1.125rem;
      text-anchor: middle;
@@ -34,7 +58,7 @@ body {
     nav a{
         color:white !important;
     }
-    /* Bouton header */
+    /* Bouton popup */
     .boutton-header{
   transition: all .5s ease;
   color: #fff;
@@ -48,29 +72,89 @@ body {
   background-color : transparent;
   padding: 10px;
   outline: none;
+ margin:auto;
+ width:auto;
   border-radius: 4px;
   list-style-type:none;
     }
-   
+    .jumbotron{
+      background-color:#485460 !important;
+      max-width:auto;
+      margin:2%;
+    }
+    .jumbotron h1{
+      font-family:'a4speed';
+    }
+   .px3{
+    margin-bottom:5%;
+   }
   
   .boutton-header:hover {
   color: #001F3F;
   background-color: #fff;
   }
-  .card-img-top:hover{
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Safari 3-8 */
-    transform: scale(1.5);
+  .card.shadow-sm:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
     }
-   .card-img-top{
-     
-      
+  .card.shadow-sm{
       transition: transform .1s;
+      position:relative;
       }
+      .page{
+        margin-top:4% !important;
+        margin-bottom:4% !important;
+      }
+      /* mise en place du tag sur la carte */
+      .btn-group{
+        position:inherit !important;
+      }
+      .tagCarte{
+        position: absolute;
+        top: 0;
+        border-radius: 4%;
+        right: 0;
+        border-radius: 0% 4px 0px 0px;
+        
+      }
+      /* modal */
+      .modal{
+        position:inherit !important;
+      }
+      .modal-backdrop.show{
+        opacity:0 !important;
+      }
+      .modal-backdrop{
+        position:inherit;
+      } 
+      h5#staticBackdropLabel{
+        color:black !important;
+      }
+      .neonText {
+        
+  border: 6px solid #485460;
+  border-radius:15px;
+ 
+}
+
+/* contact */
+#contact_valider{
+  margin:auto;
+  width:auto;
+  background-color:#1A2832;
+}
+
+
+      
   /* FOOTER*/
   footer{
-      background-color:#000000 !important;
+      background-color:#485460  !important;
   }
+  ul li {
+     list-style: none !important;
+     }
+
    @media (min-width: 768px) {
      .bd-placeholder-img-lg {
        font-size: 3.5rem;
@@ -85,21 +169,13 @@ body {
   }
   
   .card-slider {
-    max-width: 960px;
+    max-width: auto;
     margin: 0 auto;
   
     @media screen and (max-width: 1024px) {
       width: 80%;
     }
   
-    .slick-prev-icon,
-    .slick-next-icon {
-      color: black;
-    }
-  
-    .slick-slide {
-      padding: 0 10px;
-    }
   
     .card {
       position: relative;
@@ -282,4 +358,21 @@ body {
       }
     }
   }
-  
+ 
+  /* SLICK CAROUSEL*/
+
+  /* Defines the width of the carousel and centers it on the page */
+// .slick-carousel {
+//   margin: 0 auto;
+//   width: 1000px;
+// }
+
+// /* The width of each slide */
+// .slick-slide {
+//   width: 150px;
+// }
+
+// /* Color of the arrows */
+// .slick-next::before, .slick-prev::before {
+//   color: blue;
+// }

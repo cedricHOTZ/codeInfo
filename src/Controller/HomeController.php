@@ -7,6 +7,7 @@ use App\Entity\Tag;
 use App\Entity\Posts;
 use App\Form\ContactType;
 use App\Form\PartagePostType;
+use Symfony\Component\Form\Form;
 use App\Repository\TagRepository;
 use App\Repository\PostsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,33 +28,39 @@ class HomeController extends AbstractController
     }
     
     /**
-     * @Route("/", name="home")
+     * @Route("", name="home")
      */
 
-    public function index(PostsRepository $postsRepository,TagRepository $tagRepository, Request $request):Response
+    public function index(PostsRepository $postsRepository,TagRepository $tagRepository, Request $request ):Response
      {
     
-     // Récupère tout les tags
+        $submittedToken = $request->request->get('token');
      $listTag = $tagRepository->findAll();
-     // Affiche les post par une catégorie passée en paramètre
+     
      $listPost = $postsRepository->findByPostPHp('php');
-     // Affiche tout les posts
+     $postflutter = $postsRepository->findByPostFlutter('flutter');
+     $postPertinent = $postsRepository->findBy(['id' => [1,2]]);
+     $csrf = $this->container->get('security.csrf.token_manager');
+     $token = $csrf->refreshToken('yourkey');
      $posts = $postsRepository->findByExampleField($value = 6);
      $partage = New Posts();
      $form = $this->createForm(PartagePostType::class);
      $form->handleRequest($request);
      if ($form->isSubmitted() && $form->isValid()) {
-            $partage = $form->getData();   
+        if ($this->isCsrfTokenValid('delete-item', $submittedToken)) {
+             $partage = $form->getData();
             $this->entityManager->persist($partage);
             $this->entityManager->flush();
             $this->addFlash('success', 'Votre post a bien été partagé');
-          
+         $this->redirect('home');
         }
-    
+    }
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'tag' => $listTag,
            'listPost' => $listPost,
+              'postflutter' => $postflutter,
+           'postPertinent' => $postPertinent,
             'form' => $form->createView(),
            
         ]);

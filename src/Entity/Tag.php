@@ -10,9 +10,14 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Routing\Annotation\Route; 
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=TagRepository::class)
+ * @UniqueEntity("nom")
+ * @ORM\Table(name="cod_tag")
  */
 class Tag
 {
@@ -25,6 +30,8 @@ class Tag
 
     /**
      * @ORM\Column(type="string", length=255)
+    
+     * 
      */
     private $nom;
 
@@ -44,6 +51,11 @@ class Tag
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $couleur;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isActive;
 
 
 
@@ -66,7 +78,7 @@ class Tag
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
+        
         return $this;
     }
   
@@ -122,6 +134,18 @@ class Tag
     public function setCouleur(?string $couleur): self
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(?bool $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }

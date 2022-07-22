@@ -16,6 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @ORM\Entity(repositoryClass=PostsRepository::class)
  * @Vich\Uploadable
+ * @ORM\Table(name="cod_posts",indexes={@ORM\Index(columns={"titre","description"}, flags={"fulltext"})})
+
  */
 class Posts
 {
@@ -42,7 +44,7 @@ class Posts
     private $url;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="create") 
      */
     private $date;
@@ -61,14 +63,30 @@ class Posts
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="cod_posts")
      */
     private $tags;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"titre"})
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
 
     public function __construct()
     {
@@ -187,18 +205,54 @@ class Posts
     }
  
  public function __ToString()
-             {
-                 return $this->titre;
-             }
+                                        {
+                                            return $this->titre;
+                                        }
 
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+     public function setSlug(string $slug): self
+     {
+         $this->slug = $slug;
+
+         return $this;
+     }
+
+    public function getActive(): ?bool
     {
-        $this->slug = $slug;
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

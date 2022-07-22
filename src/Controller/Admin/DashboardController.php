@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Entity\Posts;
 use App\Repository\TagRepository;
+use App\Repository\UserRepository;
 use App\Repository\PostsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +22,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 
 class DashboardController extends AbstractDashboardController
 {
-    protected PostsRepository $postsRepository;
-     protected TagRepository $tagRepository;
+        protected PostsRepository $postsRepository;
+        protected TagRepository $tagRepository;
+        protected UserRepository $userRepository;
     
 
     public function __construct(
-        PostsRepository $postsRepository, TagRepository $tagRepository
+        PostsRepository $postsRepository, TagRepository $tagRepository, UserRepository $userRepository
     ) {
         $this->postsRepository = $postsRepository;
          $this->tagRepository = $tagRepository;
+            $this->userRepository = $userRepository;
        
     }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
@@ -41,6 +45,7 @@ class DashboardController extends AbstractDashboardController
         return $this->render('bundles/EasyAdminBundle/welcome.html.twig',[
             'countPost' => $this->postsRepository->countPost(),
             'countTag' => $this->tagRepository->countTag(),
+            'countUser' => $this->userRepository->countUser(),
            
         ]);
     
@@ -65,6 +70,7 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        
         yield MenuItem::section('Posts');
         // yield MenuItem::linkToCrud('Post', 'fas fa-list', Posts::class);
         // Posts
@@ -80,6 +86,10 @@ class DashboardController extends AbstractDashboardController
             ]);
       //  yield MenuItem::linkToCrud('Tag', "fas fa-tag", Tag::class);
         yield MenuItem::section('Users');
+        yield MenuItem::subMenu('Users', 'fas fa-user')->setSubItems([
+        MenuItem::linkToCrud('Ajouter un utilisateur', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+        MenuItem::linkToCrud('Afficher les utilisateurs', 'fas fa-eye', User::class)
+  ]);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu

@@ -18,6 +18,9 @@
 
 {% set has_batch_actions = batch_actions|length > 0 %}
 {% block page_actions %}
+{% for message in app.flashes('success') %}
+    <div id="notyf-message" class="success">{{ message }}</div>
+{% endfor %}
     {% if filters|length > 0 %}
         <div class="datagrid-filters">
             {% block filters %}
@@ -35,7 +38,7 @@
             {% endblock filters %}
         </div>
     {% endif %}
-
+{{ include ('composant/flash_messages.html.twig') }}
     {% block global_actions %}
         <div class="global-actions">
             {% for action in global_actions %}
@@ -55,6 +58,7 @@
 {% endblock page_actions %}
 
 {% block main %}
+
     {# sort can be multiple; let's consider the sorting field the first one #}
     {% set sort_field_name = app.request.get('sort')|keys|first %}
     {% set sort_order = app.request.get('sort')|first %}
@@ -214,4 +218,5 @@
     {% if has_batch_actions %}
         {{ include('@EasyAdmin/crud/includes/_batch_action_modal.html.twig', {}, with_context = false) }}
     {% endif %}
+    {{include('_notyf.html.twig') }}
 {% endblock main %}
