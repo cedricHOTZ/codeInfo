@@ -1,0 +1,5 @@
+- - -
+deployment:
+  task:
+    - export DEPLOYPATH = /home/lbid1545/repositories/codeinfo/
+    - /bin/cp * $DEPLOYPATH
