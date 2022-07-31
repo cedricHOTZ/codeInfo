@@ -2,5 +2,8 @@
   "cSpell.ignoreWords": [
     "setPassword"
   ],
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "cSpell.words": [
+    "DEPLOYPATH"
+  ]
 }
