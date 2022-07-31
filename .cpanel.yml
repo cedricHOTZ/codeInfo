@@ -1,5 +1,5 @@
-- - -
+---
 deployment:
   tasks:
-    - export DEPLOYPATH = /home/ibid1545/codeinfo
-    - /bin/cp * $DEPLOYPATH 
+    - export DEPLOYPATH=/home/ibid1545/codeinfo/
+    - /bin/cp * $DEPLOYPATH
