@@ -1,0 +1,114 @@
+<?php //ddbd0bccc71ddd749b8551682fd12500
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Query\\ParserResult'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ParserResult')),
+        clone ($p['Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\Exec\\SingleSelectExecutor')),
+        clone ($p['Doctrine\\ORM\\Query\\ResultSetMapping'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Query\\ResultSetMapping')),
+    ],
+    null,
+    [
+        'Doctrine\\ORM\\Query\\ParserResult' => [
+            '_sqlExecutor' => [
+                $o[1],
+            ],
+            '_resultSetMapping' => [
+                $o[2],
+            ],
+            '_parameterMappings' => [
+                [
+                    'nom' => [
+                        0,
+                    ],
+                ],
+            ],
+        ],
+        'Doctrine\\ORM\\Query\\Exec\\AbstractSqlExecutor' => [
+            '_sqlStatements' => [
+                1 => 'SELECT c0_.id AS id_0, c0_.titre AS titre_1, c0_.description AS description_2, c0_.url AS url_3, c0_.date AS date_4, c0_.image AS image_5, c0_.slug AS slug_6, c0_.active AS active_7, c0_.pseudo AS pseudo_8, c0_.email AS email_9, c1_.id AS id_10, c1_.nom AS nom_11, c1_.slug AS slug_12, c1_.couleur AS couleur_13, c1_.is_active AS is_active_14 FROM cod_posts c0_ INNER JOIN posts_tag p2_ ON c0_.id = p2_.posts_id INNER JOIN cod_tag c1_ ON c1_.id = p2_.tag_id AND (c1_.nom = ?) WHERE c0_.active = 1 ORDER BY c0_.date DESC',
+            ],
+        ],
+        'stdClass' => [
+            'aliasMap' => [
+                2 => [
+                    'p' => 'App\\Entity\\Posts',
+                    't' => 'App\\Entity\\Tag',
+                ],
+            ],
+            'relationMap' => [
+                2 => [
+                    't' => 'tags',
+                ],
+            ],
+            'parentAliasMap' => [
+                2 => [
+                    't' => 'p',
+                ],
+            ],
+            'fieldMappings' => [
+                2 => [
+                    'id_0' => 'id',
+                    'titre_1' => 'titre',
+                    'description_2' => 'description',
+                    'url_3' => 'url',
+                    'date_4' => 'date',
+                    'image_5' => 'image',
+                    'slug_6' => 'slug',
+                    'active_7' => 'active',
+                    'pseudo_8' => 'pseudo',
+                    'email_9' => 'email',
+                    'id_10' => 'id',
+                    'nom_11' => 'nom',
+                    'slug_12' => 'slug',
+                    'couleur_13' => 'couleur',
+                    'is_active_14' => 'isActive',
+                ],
+            ],
+            'entityMappings' => [
+                2 => [
+                    'p' => null,
+                ],
+            ],
+            'columnOwnerMap' => [
+                2 => [
+                    'id_0' => 'p',
+                    'titre_1' => 'p',
+                    'description_2' => 'p',
+                    'url_3' => 'p',
+                    'date_4' => 'p',
+                    'image_5' => 'p',
+                    'slug_6' => 'p',
+                    'active_7' => 'p',
+                    'pseudo_8' => 'p',
+                    'email_9' => 'p',
+                    'id_10' => 't',
+                    'nom_11' => 't',
+                    'slug_12' => 't',
+                    'couleur_13' => 't',
+                    'is_active_14' => 't',
+                ],
+            ],
+            'declaringClasses' => [
+                2 => [
+                    'id_0' => 'App\\Entity\\Posts',
+                    'titre_1' => 'App\\Entity\\Posts',
+                    'description_2' => 'App\\Entity\\Posts',
+                    'url_3' => 'App\\Entity\\Posts',
+                    'date_4' => 'App\\Entity\\Posts',
+                    'image_5' => 'App\\Entity\\Posts',
+                    'slug_6' => 'App\\Entity\\Posts',
+                    'active_7' => 'App\\Entity\\Posts',
+                    'pseudo_8' => 'App\\Entity\\Posts',
+                    'email_9' => 'App\\Entity\\Posts',
+                    'id_10' => 'App\\Entity\\Tag',
+                    'nom_11' => 'App\\Entity\\Tag',
+                    'slug_12' => 'App\\Entity\\Tag',
+                    'couleur_13' => 'App\\Entity\\Tag',
+                    'is_active_14' => 'App\\Entity\\Tag',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];
