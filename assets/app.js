@@ -89,3 +89,7 @@ $('.slickcarousel').slick({
 // });
 
 // console.log('dfgkldgflkgf');
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})

@@ -3,7 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'ffe9743143d831d8c148af084f8435eb455ba759',
+        'reference' => '573814df1dc601ca8984eee759ade5aeac8b07d8',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ffe9743143d831d8c148af084f8435eb455ba759',
+            'reference' => '573814df1dc601ca8984eee759ade5aeac8b07d8',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -414,6 +414,15 @@
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'picocss/pico' => array(
+            'pretty_version' => 'v1.5.3',
+            'version' => '1.5.3.0',
+            'reference' => '4e9ac7536bacf5c1d91ae298f59ec67a23171615',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../picocss/pico',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'psr/cache' => array(
             'pretty_version' => '1.0.1',

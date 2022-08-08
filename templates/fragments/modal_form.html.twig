@@ -8,12 +8,15 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle="dropdown"]')
 
 </script>        
            <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
- Partager un article
+<p class="lead text-center p-3">
+           <!-- Button trigger modal -->
+<button type="button" class="boutton-header" id="partagePost" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+ Partager un articlessss
 </button>
-
+</p>
+ 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="staticBackdrop" data-backdrop="static" data-toggle="modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -21,15 +24,26 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle="dropdown"]')
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-     
-   
+      {{form_start(form)}}
+       <div class="row">
+         <div class="col">
+          {{form_widget(form.pseudo)}}
+         </div>
+        <div class="col">
+          {{form_widget(form.email)}}
+        </div>
         
+        <div class="col">
+        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+        </div
+      </div> 
+   {{form_end(form)}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> 
+       <input type="hidden" name="_token" value="{{ form._token.vars.value }}">
       </div>
     </div>
   </div>
 </div>
-
+</div> 

@@ -83,7 +83,7 @@ class PartagePostType extends AbstractType
                     ->add('Valider', SubmitType::class,[
                         'label' => 'Partager', 
                         'attr' => [
-                            'class' => 'btn btn-primary mt-3 d-md-flex justify-content-md-end'
+                            'class' => 'btn btn-primary mt-3 justify-content-md-end'
                         ]])
            
             
