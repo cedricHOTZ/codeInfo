@@ -10,8 +10,8 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
@@ -20,9 +20,9 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
+        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '53c7be3308b5aa229d03a4dfcf6ca18d' => __DIR__ . '/..' . '/symfony/intl/Resources/functions.php',
-        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
     );
@@ -38,6 +38,7 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         ),
         'V' => 
         array (
+            'VictorPrdh\\RecaptchaBundle\\' => 27,
             'Vich\\UploaderBundle\\' => 20,
         ),
         'T' => 
@@ -124,6 +125,10 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
             'Stof\\DoctrineExtensionsBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
         ),
+        'R' => 
+        array (
+            'ReCaptcha\\' => 10,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -145,6 +150,10 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         array (
             'Liip\\ImagineBundle\\' => 19,
             'Laminas\\Code\\' => 13,
+        ),
+        'K' => 
+        array (
+            'Karser\\Recaptcha3Bundle\\' => 24,
         ),
         'I' => 
         array (
@@ -199,6 +208,10 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'VictorPrdh\\RecaptchaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src',
         ),
         'Vich\\UploaderBundle\\' => 
         array (
@@ -516,6 +529,10 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         array (
             0 => __DIR__ . '/..' . '/sensio/framework-extra-bundle/src',
         ),
+        'ReCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -567,6 +584,10 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'Laminas\\Code\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-code/src',
+        ),
+        'Karser\\Recaptcha3Bundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle',
         ),
         'Imagine\\' => 
         array (
@@ -2534,6 +2555,23 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'Imagine\\Utils\\Matrix' => __DIR__ . '/..' . '/imagine/imagine/src/Utils/Matrix.php',
         'IntlDateFormatter' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Karser\\Recaptcha3Bundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/DependencyInjection/Configuration.php',
+        'Karser\\Recaptcha3Bundle\\DependencyInjection\\KarserRecaptcha3Extension' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/DependencyInjection/KarserRecaptcha3Extension.php',
+        'Karser\\Recaptcha3Bundle\\Form\\Recaptcha3Type' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Form/Recaptcha3Type.php',
+        'Karser\\Recaptcha3Bundle\\KarserRecaptcha3Bundle' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/KarserRecaptcha3Bundle.php',
+        'Karser\\Recaptcha3Bundle\\Services\\HostProvider' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Services/HostProvider.php',
+        'Karser\\Recaptcha3Bundle\\Services\\HostProviderInterface' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Services/HostProviderInterface.php',
+        'Karser\\Recaptcha3Bundle\\Services\\IpResolver' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Services/IpResolver.php',
+        'Karser\\Recaptcha3Bundle\\Services\\IpResolverInterface' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Services/IpResolverInterface.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\DependencyInjection\\ConfigurationTest' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/DependencyInjection/ConfigurationTest.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\Form\\Recaptcha3TypeTest' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/Form/Recaptcha3TypeTest.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\FunctionalTest' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/FunctionalTest.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\Services\\IpResolverTest' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/Services/IpResolverTest.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\TestKernel' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/TestKernel.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\Validator\\Constraints\\Recaptcha3ValidatorTest' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/Validator/Constraints/Recaptcha3ValidatorTest.php',
+        'Karser\\Recaptcha3Bundle\\Tests\\fixtures\\RecaptchaMock' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Tests/fixtures/RecaptchaMock.php',
+        'Karser\\Recaptcha3Bundle\\Validator\\Constraints\\Recaptcha3' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Validator/Constraints/Recaptcha3.php',
+        'Karser\\Recaptcha3Bundle\\Validator\\Constraints\\Recaptcha3Validator' => __DIR__ . '/..' . '/karser/karser-recaptcha3-bundle/Validator/Constraints/Recaptcha3Validator.php',
         'Laminas\\Code\\DeclareStatement' => __DIR__ . '/..' . '/laminas/laminas-code/src/DeclareStatement.php',
         'Laminas\\Code\\Exception\\BadMethodCallException' => __DIR__ . '/..' . '/laminas/laminas-code/src/Exception/BadMethodCallException.php',
         'Laminas\\Code\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/laminas/laminas-code/src/Exception/ExceptionInterface.php',
@@ -3903,6 +3941,15 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/DummyTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
+        'ReCaptcha\\ReCaptcha' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/ReCaptcha.php',
+        'ReCaptcha\\RequestMethod' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod.php',
+        'ReCaptcha\\RequestMethod\\Curl' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/Curl.php',
+        'ReCaptcha\\RequestMethod\\CurlPost' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/CurlPost.php',
+        'ReCaptcha\\RequestMethod\\Post' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/Post.php',
+        'ReCaptcha\\RequestMethod\\Socket' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/Socket.php',
+        'ReCaptcha\\RequestMethod\\SocketPost' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestMethod/SocketPost.php',
+        'ReCaptcha\\RequestParameters' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/RequestParameters.php',
+        'ReCaptcha\\Response' => __DIR__ . '/..' . '/google/recaptcha/src/ReCaptcha/Response.php',
         'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
@@ -7349,6 +7396,12 @@ class ComposerStaticInit6de2821c3e3f45494230aed02aec7efe
         'Vich\\UploaderBundle\\Util\\FilenameUtils' => __DIR__ . '/..' . '/vich/uploader-bundle/src/Util/FilenameUtils.php',
         'Vich\\UploaderBundle\\Util\\Transliterator' => __DIR__ . '/..' . '/vich/uploader-bundle/src/Util/Transliterator.php',
         'Vich\\UploaderBundle\\VichUploaderBundle' => __DIR__ . '/..' . '/vich/uploader-bundle/src/VichUploaderBundle.php',
+        'VictorPrdh\\RecaptchaBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/DependencyInjection/Configuration.php',
+        'VictorPrdh\\RecaptchaBundle\\DependencyInjection\\RecaptchaExtension' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/DependencyInjection/RecaptchaExtension.php',
+        'VictorPrdh\\RecaptchaBundle\\Form\\ReCaptchaType' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/Form/ReCaptchaType.php',
+        'VictorPrdh\\RecaptchaBundle\\RecaptchaBundle' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/RecaptchaBundle.php',
+        'VictorPrdh\\RecaptchaBundle\\Validator\\Constraints\\IsValidCaptcha' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/Validator/Constraints/IsValidCaptcha.php',
+        'VictorPrdh\\RecaptchaBundle\\Validator\\Constraints\\IsValidCaptchaValidator' => __DIR__ . '/..' . '/victor-prdh/recaptcha-bundle/src/Validator/Constraints/IsValidCaptchaValidator.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',
         'Webmozart\\Assert\\Mixin' => __DIR__ . '/..' . '/webmozart/assert/src/Mixin.php',

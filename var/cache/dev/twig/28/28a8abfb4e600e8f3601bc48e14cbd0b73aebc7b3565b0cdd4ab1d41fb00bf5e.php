@@ -92,36 +92,44 @@ class __TwigTemplate_1517b94f28b139c843bac7f56d8b6a7c6a0762d24b612cc51d63f6089c2
             // line 34
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("user");
             echo "\">Voir mon compte</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
-          </ul>
+            ";
+            // line 35
+            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
+                // line 36
+                echo "            <li><a class=\"dropdown-item\" href=\"";
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin");
+                echo "\">Admin</a></li>
+            ";
+            }
+            // line 38
+            echo "          </ul>
         </li>
       
         <li class=\"nav-item\">
         <a class=\"nav-link fw-bold\" href=\"";
-            // line 41
+            // line 42
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             echo "\">Me déconnecter</a>
         </li>
         ";
         } else {
-            // line 44
+            // line 45
             echo "        <li class=\"nav-item\">
         <a class=\"nav-link fw-bold\" href=\"";
-            // line 45
+            // line 46
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_register");
             echo "\">M'inscrire</a>
         </li>
          <li class=\"nav-item\">
         <a class=\"nav-link fw-bold\" href=\"";
-            // line 48
+            // line 49
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">Me connecter</a>
         </li>
         </ul>
         ";
         }
-        // line 52
+        // line 53
         echo "
       </div>
   </div>
@@ -138,7 +146,7 @@ class __TwigTemplate_1517b94f28b139c843bac7f56d8b6a7c6a0762d24b612cc51d63f6089c2
 
   <div class=\"px3\">
     <h1 class=\"fw-bold text-white\">Code info</h1>
-    <p class=\"lead fw-bold text-white\">Vous trouverez des articles sur symfony et flutter</p>
+    <p class=\"lead fw-bold text-white\">Vous trouverez des articles pour le développement web</p>
   
  </div>
  </div>
@@ -170,7 +178,7 @@ class __TwigTemplate_1517b94f28b139c843bac7f56d8b6a7c6a0762d24b612cc51d63f6089c2
 
     public function getDebugInfo()
     {
-        return array (  125 => 52,  118 => 48,  112 => 45,  109 => 44,  103 => 41,  93 => 34,  86 => 29,  84 => 28,  69 => 16,  63 => 13,  57 => 10,  47 => 3,  43 => 1,);
+        return array (  133 => 53,  126 => 49,  120 => 46,  117 => 45,  111 => 42,  105 => 38,  99 => 36,  97 => 35,  93 => 34,  86 => 29,  84 => 28,  69 => 16,  63 => 13,  57 => 10,  47 => 3,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -209,8 +217,9 @@ class __TwigTemplate_1517b94f28b139c843bac7f56d8b6a7c6a0762d24b612cc51d63f6089c2
           </a>
           <ul class=\"dropdown-menu bg-black\" aria-labelledby=\"navbarDropdownMenuLink\">
             <li><a class=\"dropdown-item\" href=\"{{path('user')}}\">Voir mon compte</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
+            {% if is_granted ('ROLE_ADMIN') %}
+            <li><a class=\"dropdown-item\" href=\"{{path('admin')}}\">Admin</a></li>
+            {% endif %}
           </ul>
         </li>
       
@@ -242,7 +251,7 @@ class __TwigTemplate_1517b94f28b139c843bac7f56d8b6a7c6a0762d24b612cc51d63f6089c2
 
   <div class=\"px3\">
     <h1 class=\"fw-bold text-white\">Code info</h1>
-    <p class=\"lead fw-bold text-white\">Vous trouverez des articles sur symfony et flutter</p>
+    <p class=\"lead fw-bold text-white\">Vous trouverez des articles pour le développement web</p>
   
  </div>
  </div>

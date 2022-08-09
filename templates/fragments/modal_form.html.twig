@@ -32,10 +32,11 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle="dropdown"]')
         <div class="col">
           {{form_widget(form.email)}}
         </div>
+         
         
         <div class="col">
         <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
-        </div
+        </div>
       </div> 
    {{form_end(form)}}
       </div>

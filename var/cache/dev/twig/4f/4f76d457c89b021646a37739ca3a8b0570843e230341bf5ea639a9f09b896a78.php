@@ -289,7 +289,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
     </div>
     <div class=\"row\">
    
-     <h4 class=\"text-white mt-2\">La ddsdspdfdffvcvcreerredlus pertinebvbvbvnts</h4>\t
+     <h4 class=\"text-white mt-2\">Les plus pertinents</h4>\t
      ";
         // line 114
         $context['_parent'] = $context;
@@ -326,7 +326,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
      
   </div>
  
-<h2 class=\"text-white text-center\">FLUTTERS</h2>
+<h2 class=\"text-white text-center\">FLUTTER</h2>
         <div class=\"row\">
  
   <section class=\"col-sm-10 col-md-10\">
@@ -433,26 +433,9 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
         echo "</div> \t
 </div>
  <!-- Create your own class for the containing div -->
-<div class=\"slickcarousel\">
-  <!-- Inside the containing div, add one div for each slide -->
-  <div>
-    <!-- You can put an image or text inside each slide div -->
-    <img src=\"http://placekitten.com/g/320/240\">
-  </div>
-  <div>
-    <img src=\"http://placekitten.com/g/320/240\">
-  </div>
-  <div>
-    <img src=\"http://placekitten.com/g/320/240\">
-  </div>
-  <div>
-    <img src=\"http://placekitten.com/g/320/240\">
-  </div>
-  <div>
-    <img src=\"http://placekitten.com/g/320/240\">
-  </div>
-</div>
-
+";
+        // line 206
+        echo "
 <!-- jQuery CDN -->
 <script src=\"//code.jquery.com/jquery-1.11.0.min.js\"></script>
 <script src=\"//code.jquery.com/jquery-migrate-1.2.1.min.js\"></script>
@@ -479,7 +462,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
 
     public function getDebugInfo()
     {
-        return array (  433 => 184,  429 => 182,  425 => 180,  423 => 179,  418 => 176,  414 => 174,  395 => 162,  392 => 161,  384 => 160,  378 => 159,  372 => 156,  368 => 155,  364 => 153,  360 => 151,  352 => 145,  347 => 144,  339 => 139,  325 => 127,  315 => 123,  311 => 122,  307 => 121,  299 => 115,  295 => 114,  288 => 109,  282 => 108,  274 => 105,  270 => 104,  257 => 93,  239 => 82,  236 => 81,  228 => 80,  222 => 79,  216 => 76,  212 => 75,  208 => 73,  204 => 71,  192 => 64,  178 => 53,  174 => 51,  162 => 44,  155 => 39,  152 => 38,  143 => 35,  140 => 34,  136 => 33,  130 => 30,  126 => 29,  122 => 27,  118 => 25,  112 => 21,  108 => 20,  97 => 12,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
+        return array (  438 => 206,  433 => 184,  429 => 182,  425 => 180,  423 => 179,  418 => 176,  414 => 174,  395 => 162,  392 => 161,  384 => 160,  378 => 159,  372 => 156,  368 => 155,  364 => 153,  360 => 151,  352 => 145,  347 => 144,  339 => 139,  325 => 127,  315 => 123,  311 => 122,  307 => 121,  299 => 115,  295 => 114,  288 => 109,  282 => 108,  274 => 105,  270 => 104,  257 => 93,  239 => 82,  236 => 81,  228 => 80,  222 => 79,  216 => 76,  212 => 75,  208 => 73,  204 => 71,  192 => 64,  178 => 53,  174 => 51,  162 => 44,  155 => 39,  152 => 38,  143 => 35,  140 => 34,  136 => 33,  130 => 30,  126 => 29,  122 => 27,  118 => 25,  112 => 21,  108 => 20,  97 => 12,  88 => 5,  78 => 4,  59 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -596,7 +579,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
     </div>
     <div class=\"row\">
    
-     <h4 class=\"text-white mt-2\">La ddsdspdfdffvcvcreerredlus pertinebvbvbvnts</h4>\t
+     <h4 class=\"text-white mt-2\">Les plus pertinents</h4>\t
      {% for postPertinents in postPertinent %}
      
      <div class=\"card mt-2\">
@@ -614,7 +597,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
      
   </div>
  
-<h2 class=\"text-white text-center\">FLUTTERS</h2>
+<h2 class=\"text-white text-center\">FLUTTER</h2>
         <div class=\"row\">
  
   <section class=\"col-sm-10 col-md-10\">
@@ -670,7 +653,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
 </div> \t
 </div>
  <!-- Create your own class for the containing div -->
-<div class=\"slickcarousel\">
+{# <div class=\"slickcarousel\">
   <!-- Inside the containing div, add one div for each slide -->
   <div>
     <!-- You can put an image or text inside each slide div -->
@@ -688,7 +671,7 @@ class __TwigTemplate_e7043563b564f927062d55f0e86eb49db2b66cebb639713a28dc4a3f9b0
   <div>
     <img src=\"http://placekitten.com/g/320/240\">
   </div>
-</div>
+</div> #}
 
 <!-- jQuery CDN -->
 <script src=\"//code.jquery.com/jquery-1.11.0.min.js\"></script>

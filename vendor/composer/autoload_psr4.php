@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'phpDocumentor\\Reflection\\' => array($vendorDir . '/phpdocumentor/reflection-common/src', $vendorDir . '/phpdocumentor/reflection-docblock/src', $vendorDir . '/phpdocumentor/type-resolver/src'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
+    'VictorPrdh\\RecaptchaBundle\\' => array($vendorDir . '/victor-prdh/recaptcha-bundle/src'),
     'Vich\\UploaderBundle\\' => array($vendorDir . '/vich/uploader-bundle/src'),
     'Twig\\Extra\\TwigExtraBundle\\' => array($vendorDir . '/twig/extra-bundle'),
     'Twig\\Extra\\String\\' => array($vendorDir . '/twig/string-extra'),
@@ -87,6 +88,7 @@ return array(
     'SymfonyCasts\\Bundle\\ResetPassword\\' => array($vendorDir . '/symfonycasts/reset-password-bundle/src'),
     'Stof\\DoctrineExtensionsBundle\\' => array($vendorDir . '/antishov/doctrine-extensions-bundle'),
     'Sensio\\Bundle\\FrameworkExtraBundle\\' => array($vendorDir . '/sensio/framework-extra-bundle/src'),
+    'ReCaptcha\\' => array($vendorDir . '/google/recaptcha/src/ReCaptcha'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Link\\' => array($vendorDir . '/psr/link/src'),
     'Psr\\EventDispatcher\\' => array($vendorDir . '/psr/event-dispatcher/src'),
@@ -100,6 +102,7 @@ return array(
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'Liip\\ImagineBundle\\' => array($vendorDir . '/liip/imagine-bundle'),
     'Laminas\\Code\\' => array($vendorDir . '/laminas/laminas-code/src'),
+    'Karser\\Recaptcha3Bundle\\' => array($vendorDir . '/karser/karser-recaptcha3-bundle'),
     'Imagine\\' => array($vendorDir . '/imagine/imagine/src'),
     'Gedmo\\' => array($vendorDir . '/gedmo/doctrine-extensions/src'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),

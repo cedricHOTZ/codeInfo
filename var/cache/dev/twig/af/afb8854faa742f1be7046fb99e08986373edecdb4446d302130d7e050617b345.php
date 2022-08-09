@@ -83,24 +83,25 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle=\"dropdown\"]')
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 33, $this->source); })()), "email", [], "any", false, false, false, 33), 'widget');
         echo "
         </div>
+         
         
         <div class=\"col\">
         <input type=\"hidden\" name=\"token\" value=\"";
-        // line 37
+        // line 38
         echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("delete-item"), "html", null, true);
         echo "\"/>
-        </div
+        </div>
       </div> 
    ";
-        // line 40
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 40, $this->source); })()), 'form_end');
+        // line 41
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 41, $this->source); })()), 'form_end');
         echo "
       </div>
       <div class=\"modal-footer\">
         <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Fermer</button> 
        <input type=\"hidden\" name=\"_token\" value=\"";
-        // line 44
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 44, $this->source); })()), "_token", [], "any", false, false, false, 44), "vars", [], "any", false, false, false, 44), "value", [], "any", false, false, false, 44), "html", null, true);
+        // line 45
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 45, $this->source); })()), "_token", [], "any", false, false, false, 45), "vars", [], "any", false, false, false, 45), "value", [], "any", false, false, false, 45), "html", null, true);
         echo "\">
       </div>
     </div>
@@ -127,7 +128,7 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle=\"dropdown\"]')
 
     public function getDebugInfo()
     {
-        return array (  103 => 44,  96 => 40,  90 => 37,  83 => 33,  77 => 30,  71 => 27,  43 => 1,);
+        return array (  104 => 45,  97 => 41,  91 => 38,  83 => 33,  77 => 30,  71 => 27,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -166,10 +167,11 @@ var dropdown = new bootstrap.Dropdown('[data-bs-toggle=\"dropdown\"]')
         <div class=\"col\">
           {{form_widget(form.email)}}
         </div>
+         
         
         <div class=\"col\">
         <input type=\"hidden\" name=\"token\" value=\"{{ csrf_token('delete-item') }}\"/>
-        </div
+        </div>
       </div> 
    {{form_end(form)}}
       </div>

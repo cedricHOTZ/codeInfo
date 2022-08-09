@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -80,12 +81,20 @@ class PartagePostType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                     ],]) 
-                    ->add('Valider', SubmitType::class,[
-                        'label' => 'Partager', 
-                        'attr' => [
-                            'class' => 'btn btn-primary mt-3 justify-content-md-end'
+            ->add('captcha', ReCaptchaType::class,[
+                  'label' => 'Captcha',
+                 'attr' => [
+                 'class' => 'form-control'
+                          ],])
+        
+           ->add('Valider', SubmitType::class,[
+                   'label' => 'Partager', 
+                   'attr' => [
+                   'class' => 'btn btn-primary mt-3 justify-content-md-end'
                         ]])
-           
+                
+         
+        
             
         ;
     }

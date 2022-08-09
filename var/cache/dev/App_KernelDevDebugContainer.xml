@@ -26,6 +26,8 @@
       <parameter key="StofDoctrineExtensionsBundle">Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle</parameter>
       <parameter key="LiipImagineBundle">Liip\ImagineBundle\LiipImagineBundle</parameter>
       <parameter key="SymfonyCastsResetPasswordBundle">SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle</parameter>
+      <parameter key="KarserRecaptcha3Bundle">Karser\Recaptcha3Bundle\KarserRecaptcha3Bundle</parameter>
+      <parameter key="RecaptchaBundle">VictorPrdh\RecaptchaBundle\RecaptchaBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -96,9 +98,18 @@
         <parameter key="path">/Users/admin/Desktop/codeinfo/vendor/symfonycasts/reset-password-bundle/src</parameter>
         <parameter key="namespace">SymfonyCasts\Bundle\ResetPassword</parameter>
       </parameter>
+      <parameter key="KarserRecaptcha3Bundle" type="collection">
+        <parameter key="path">/Users/admin/Desktop/codeinfo/vendor/karser/karser-recaptcha3-bundle</parameter>
+        <parameter key="namespace">Karser\Recaptcha3Bundle</parameter>
+      </parameter>
+      <parameter key="RecaptchaBundle" type="collection">
+        <parameter key="path">/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src</parameter>
+        <parameter key="namespace">VictorPrdh\RecaptchaBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="google_recaptcha_site_key">%env(GOOGLE_RECAPTCHA_SITE_KEY)%</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -163,7 +174,9 @@
     <parameter key="profiler_listener.only_main_requests">false</parameter>
     <parameter key="profiler.storage.dsn">file:/Users/admin/Desktop/codeinfo/var/cache/dev/profiler</parameter>
     <parameter key="twig.form.resources" type="collection">
+      <parameter>@Recaptcha/form/recaptcha.html.twig</parameter>
       <parameter>@VichUploader/Form/fields.html.twig</parameter>
+      <parameter>@KarserRecaptcha3/Form/karser_recaptcha3_widget.html.twig</parameter>
       <parameter>@LiipImagine/Form/form_div_layout.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
     </parameter>
@@ -469,6 +482,13 @@
       <parameter key="data_loader">null</parameter>
       <parameter key="post_processors" type="collection"/>
     </parameter>
+    <parameter key="karser_recaptcha3.site_key">%env(RECAPTCHA3_KEY)%</parameter>
+    <parameter key="karser_recaptcha3.secret_key">%env(RECAPTCHA3_SECRET)%</parameter>
+    <parameter key="karser_recaptcha3.score_threshold">0.5</parameter>
+    <parameter key="karser_recaptcha3.enabled">true</parameter>
+    <parameter key="karser_recaptcha3.host">www.google.com</parameter>
+    <parameter key="victor_prdh_recaptcha.google_site_key">%env(GOOGLE_RECAPTCHA_SITE_KEY)%</parameter>
+    <parameter key="victor_prdh_recaptcha.google_secret_key">%env(GOOGLE_RECAPTCHA_SECRET_KEY)%</parameter>
     <parameter key="maker.compatible_check.doctrine.supports_attributes">true</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
@@ -572,6 +592,12 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="ReCaptcha\ReCaptcha" class="ReCaptcha\ReCaptcha">
+      <argument>%env(GOOGLE_RECAPTCHA_SECRET)%</argument>
+      <argument type="service" id="ReCaptcha\RequestMethod\CurlPost"/>
+    </service>
+    <service id="ReCaptcha\RequestMethod\CurlPost" class="ReCaptcha\RequestMethod\CurlPost"/>
+    <service id="ReCaptcha\RequestMethod\Curl" class="ReCaptcha\RequestMethod\Curl"/>
     <service id="App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.dashboard_controller"/>
       <tag name="controller.service_arguments"/>
@@ -1380,6 +1406,8 @@
         <argument>Vich\UploaderBundle\Form\Type</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
         <argument>Liip\ImagineBundle\Form\Type</argument>
+        <argument>Karser\Recaptcha3Bundle\Form</argument>
+        <argument>VictorPrdh\RecaptchaBundle\Form</argument>
       </argument>
       <argument type="collection">
         <argument>App\Form\ChangePasswordFormType</argument>
@@ -1401,6 +1429,8 @@
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType</argument>
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType</argument>
         <argument>Liip\ImagineBundle\Form\Type\ImageType</argument>
+        <argument>Karser\Recaptcha3Bundle\Form\Recaptcha3Type</argument>
+        <argument>VictorPrdh\RecaptchaBundle\Form\ReCaptchaType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1934,6 +1964,7 @@
             <argument>/Users/admin/Desktop/codeinfo/vendor/vich/uploader-bundle/translations/messages.en.yaml</argument>
             <argument>/Users/admin/Desktop/codeinfo/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.en.php</argument>
             <argument>/Users/admin/Desktop/codeinfo/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.en.xlf</argument>
+            <argument>/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src/Resources/translations/victorprdh_recaptcha.en.yaml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/admin/Desktop/codeinfo/vendor/symfony/validator/Resources/translations/validators.es.xlf</argument>
@@ -1975,6 +2006,7 @@
             <argument>/Users/admin/Desktop/codeinfo/vendor/vich/uploader-bundle/translations/messages.fr.yaml</argument>
             <argument>/Users/admin/Desktop/codeinfo/vendor/easycorp/easyadmin-bundle/src/Resources/translations/EasyAdminBundle.fr.php</argument>
             <argument>/Users/admin/Desktop/codeinfo/vendor/symfonycasts/reset-password-bundle/src/Resources/translations/ResetPasswordBundle.fr.xlf</argument>
+            <argument>/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src/Resources/translations/victorprdh_recaptcha.fr.yaml</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/admin/Desktop/codeinfo/vendor/symfony/validator/Resources/translations/validators.gl.xlf</argument>
@@ -2212,6 +2244,7 @@
           <argument>/Users/admin/Desktop/codeinfo/vendor/vich/uploader-bundle/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/easycorp/easyadmin-bundle/src/Resources/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
+          <argument>/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src/Resources/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/symfony/framework-bundle/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/sensio/framework-extra-bundle/src/translations</argument>
@@ -2227,6 +2260,7 @@
           <argument>/Users/admin/Desktop/codeinfo/vendor/symfony/webpack-encore-bundle/src/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/antishov/doctrine-extensions-bundle/translations</argument>
           <argument>/Users/admin/Desktop/codeinfo/vendor/liip/imagine-bundle/translations</argument>
+          <argument>/Users/admin/Desktop/codeinfo/vendor/karser/karser-recaptcha3-bundle/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2236,6 +2270,7 @@
             <argument>vendor/vich/uploader-bundle/translations</argument>
             <argument>vendor/easycorp/easyadmin-bundle/src/Resources/translations</argument>
             <argument>vendor/symfonycasts/reset-password-bundle/src/Resources/translations</argument>
+            <argument>vendor/victor-prdh/recaptcha-bundle/src/Resources/translations</argument>
             <argument>translations</argument>
             <argument>vendor/symfony/framework-bundle/translations</argument>
             <argument>vendor/sensio/framework-extra-bundle/src/translations</argument>
@@ -2251,6 +2286,7 @@
             <argument>vendor/symfony/webpack-encore-bundle/src/translations</argument>
             <argument>vendor/antishov/doctrine-extensions-bundle/translations</argument>
             <argument>vendor/liip/imagine-bundle/translations</argument>
+            <argument>vendor/karser/karser-recaptcha3-bundle/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -3640,7 +3676,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator._9Tc9lq"/>
+      <argument type="service" id=".service_locator.L.B9yxo"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3786,7 +3822,7 @@
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
     </service>
     <service id="validator.validator_factory" class="Symfony\Component\Validator\ContainerConstraintValidatorFactory">
-      <argument type="service" id=".service_locator.19_mNxd"/>
+      <argument type="service" id=".service_locator.JsRGsQ5"/>
     </service>
     <service id="validator.expression" class="Symfony\Component\Validator\Constraints\ExpressionValidator">
       <tag name="validator.constraint_validator" alias="validator.expression"/>
@@ -4445,6 +4481,22 @@
       <call method="addPath">
         <argument>/Users/admin/Desktop/codeinfo/vendor/liip/imagine-bundle/Resources/views</argument>
         <argument>!LiipImagine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/admin/Desktop/codeinfo/vendor/karser/karser-recaptcha3-bundle/Resources/views</argument>
+        <argument>KarserRecaptcha3</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/admin/Desktop/codeinfo/vendor/karser/karser-recaptcha3-bundle/Resources/views</argument>
+        <argument>!KarserRecaptcha3</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src/Resources/views</argument>
+        <argument>Recaptcha</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/admin/Desktop/codeinfo/vendor/victor-prdh/recaptcha-bundle/src/Resources/views</argument>
+        <argument>!Recaptcha</argument>
       </call>
       <call method="addPath">
         <argument>/Users/admin/Desktop/codeinfo/templates</argument>
@@ -5863,7 +5915,22 @@
         </service>
       </argument>
     </service>
-    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap"/>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap">
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.5dJADCx"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.Pn7yvdV"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener">
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
@@ -6401,6 +6468,12 @@
         <argument key="security.firewall.map.context.dev" type="service_closure" id="security.firewall.map.context.dev"/>
         <argument key="security.firewall.map.context.main" type="service_closure" id="security.firewall.map.context.main"/>
       </argument>
+    </service>
+    <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher">
+      <argument>^/admin</argument>
+    </service>
+    <service id=".security.request_matcher.Pn7yvdV" class="Symfony\Component\HttpFoundation\RequestMatcher">
+      <argument>^/profile</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand">
       <tag name="console.command" command="security:encode-password"/>
@@ -7588,6 +7661,50 @@
       <argument>3600</argument>
       <argument>3600</argument>
     </service>
+    <service id="karser_recaptcha3.host_provider" class="Karser\Recaptcha3Bundle\Services\HostProvider">
+      <argument>www.google.com</argument>
+    </service>
+    <service id="karser_recaptcha3.form.type" class="Karser\Recaptcha3Bundle\Form\Recaptcha3Type">
+      <tag name="form.type"/>
+      <argument>%env(RECAPTCHA3_KEY)%</argument>
+      <argument>www.google.com</argument>
+      <argument>true</argument>
+    </service>
+    <service id="karser_recaptcha3.validator" class="Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator">
+      <tag name="validator.constraint_validator" alias="karser_recaptcha3_validator"/>
+      <argument type="service" id="karser_recaptcha3.google.recaptcha"/>
+      <argument>true</argument>
+      <argument type="service" id="karser_recaptcha3.ip_resolver"/>
+    </service>
+    <service id="karser_recaptcha3.ip_resolver" class="Karser\Recaptcha3Bundle\Services\IpResolver">
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="karser_recaptcha3.google.recaptcha" class="ReCaptcha\ReCaptcha">
+      <argument>%env(RECAPTCHA3_SECRET)%</argument>
+      <argument type="service" id="karser_recaptcha3.google.request_method.curl_post"/>
+      <call method="setScoreThreshold">
+        <argument>0.5</argument>
+      </call>
+    </service>
+    <service id="karser_recaptcha3.google.request_method.curl_post" class="ReCaptcha\RequestMethod\CurlPost">
+      <argument type="service" id="karser_recaptcha3.google.request_method.curl"/>
+      <argument type="expression">service('karser_recaptcha3.host_provider').getVerifyUrl()</argument>
+    </service>
+    <service id="karser_recaptcha3.google.request_method.curl" class="ReCaptcha\RequestMethod\Curl"/>
+    <service id="victor_prdh_recaptcha_bundle.recaptcha_type" class="VictorPrdh\RecaptchaBundle\Form\ReCaptchaType" public="true" autowire="true">
+      <tag name="form.type" alias="captcha"/>
+      <argument type="service" id="parameter_bag"/>
+    </service>
+    <service id="victor_prdh_recaptcha_bundle.recaptcha_validator" class="VictorPrdh\RecaptchaBundle\Validator\Constraints\IsValidCaptchaValidator" public="true" autowire="true" autoconfigure="true">
+      <tag name="validator.is_valid" alias="victor_prdh_recaptcha.true"/>
+      <tag name="validator.constraint_validator"/>
+      <argument type="service" id="victor_prdh.recaptcha"/>
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="translator.data_collector"/>
+    </service>
+    <service id="victor_prdh.recaptcha" class="ReCaptcha\ReCaptcha" public="true">
+      <argument>%env(GOOGLE_RECAPTCHA_SECRET_KEY)%</argument>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
@@ -7728,6 +7845,8 @@
     <service id=".abstract.instanceof.EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\TimezoneConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\TimezoneConfigurator" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldConfiguratorInterface.0.EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" abstract="true"/>
     <service id=".abstract.instanceof.EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" class="EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\UrlConfigurator" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Validator\ConstraintValidatorInterface.0.victor_prdh_recaptcha_bundle.recaptcha_validator" class="VictorPrdh\RecaptchaBundle\Validator\Constraints\IsValidCaptchaValidator" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.victor_prdh_recaptcha_bundle.recaptcha_validator" class="VictorPrdh\RecaptchaBundle\Validator\Constraints\IsValidCaptchaValidator" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.gSv9zYw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8351,15 +8470,18 @@
         <argument key="kernel:terminate" type="service_closure" id=".service_locator.KfwZsne"/>
       </argument>
     </service>
-    <service id=".service_locator.19_mNxd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.JsRGsQ5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator" type="service_closure" id="karser_recaptcha3.validator"/>
         <argument key="Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator" type="service_closure" id="doctrine.orm.validator.unique"/>
         <argument key="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator" type="service_closure" id="security.validator.user_password"/>
         <argument key="Symfony\Component\Validator\Constraints\EmailValidator" type="service_closure" id="validator.email"/>
         <argument key="Symfony\Component\Validator\Constraints\ExpressionValidator" type="service_closure" id="validator.expression"/>
         <argument key="Symfony\Component\Validator\Constraints\NotCompromisedPasswordValidator" type="service_closure" id="validator.not_compromised_password"/>
+        <argument key="VictorPrdh\RecaptchaBundle\Validator\Constraints\IsValidCaptchaValidator" type="service_closure" id="victor_prdh_recaptcha_bundle.recaptcha_validator"/>
         <argument key="doctrine.orm.validator.unique" type="service_closure" id="doctrine.orm.validator.unique"/>
+        <argument key="karser_recaptcha3_validator" type="service_closure" id="karser_recaptcha3.validator"/>
         <argument key="security.validator.user_password" type="service_closure" id="security.validator.user_password"/>
         <argument key="validator.expression" type="service_closure" id="validator.expression"/>
       </argument>
@@ -8420,7 +8542,7 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator._9Tc9lq" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.L.B9yxo" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\ChangePasswordFormType" type="service_closure" id="App\Form\ChangePasswordFormType"/>
@@ -8434,6 +8556,7 @@
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\CrudFormType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FileUploadType"/>
         <argument key="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType" type="service_closure" id="EasyCorp\Bundle\EasyAdminBundle\Form\Type\FiltersFormType"/>
+        <argument key="Karser\Recaptcha3Bundle\Form\Recaptcha3Type" type="service_closure" id="karser_recaptcha3.form.type"/>
         <argument key="Liip\ImagineBundle\Form\Type\ImageType" type="service_closure" id="liip_imagine.form.type.image"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
@@ -8442,6 +8565,7 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service_closure" id="vich_uploader.form.type.file"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service_closure" id="vich_uploader.form.type.image"/>
+        <argument key="VictorPrdh\RecaptchaBundle\Form\ReCaptchaType" type="service_closure" id="victor_prdh_recaptcha_bundle.recaptcha_type"/>
       </argument>
     </service>
     <service id=".debug.http_client" class="Symfony\Component\HttpClient\TraceableHttpClient">
@@ -9832,6 +9956,7 @@
     <service id="Symfony\Component\DependencyInjection\ContainerInterface" alias="service_container">
       <deprecated package="symfony/dependency-injection" version="5.1">The "%alias_id%" autowiring alias is deprecated. Define it explicitly in your app if you want to keep using it.</deprecated>
     </service>
+    <service id="ReCaptcha\RequestMethod" alias="ReCaptcha\RequestMethod\CurlPost"/>
     <service id="App\Kernel" alias="kernel" public="true"/>
     <service id="Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface" alias="parameter_bag"/>
     <service id="Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface" alias="parameter_bag"/>
@@ -10021,6 +10146,8 @@
     <service id="Liip\ImagineBundle\Imagine\Data\DataManager" alias="liip_imagine.data.manager"/>
     <service id="Liip\ImagineBundle\Imagine\Filter\FilterManager" alias="liip_imagine.filter.manager"/>
     <service id="SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface" alias="symfonycasts.reset_password.helper"/>
+    <service id="Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator" alias="karser_recaptcha3.validator"/>
+    <service id="karser_recaptcha3.google.request_method" alias="karser_recaptcha3.google.request_method.curl_post"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator.a9JeDjD"/>
@@ -10052,8 +10179,8 @@
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.UbcrVY9" alias=".service_locator.GMaAxnD"/>
     <service id=".service_locator.rvrW4S0" alias=".service_locator.a9JeDjD"/>
-    <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
-    <service id=".service_locator.eoc7_5a" alias=".service_locator._9Tc9lq"/>
+    <service id=".service_locator.qWTyAww" alias=".service_locator.JsRGsQ5"/>
+    <service id=".service_locator.YjpKEpK" alias=".service_locator.L.B9yxo"/>
     <service id=".service_locator.2yqPAJm" alias=".service_locator.E9qd7OZ"/>
     <service id=".service_locator.O24_MAy" alias=".service_locator.yY.p4P7"/>
     <service id=".service_locator.wPLAlW_" alias=".service_locator.tLJfFGz"/>
